@@ -1,0 +1,43 @@
+@startuml
+title  Diagramme des cas d'utilisation du site web Learn@Home \n
+left to right direction
+'skinparam packageStyle rectangle
+'skinparam linetype polyline
+'skinparam linetype ortho
+
+actor Utilisateur as U
+actor Élève as E
+actor "Tuteur bénévole" as B
+
+E --|> U
+B --|> U
+rectangle "Site web Learn@Home" {
+usecase UC2 as "Créer un compte"
+usecase UC2_ as "Mot de passe oublié"
+usecase UC1 as "Se connecter au site
+--
+Points d’extension
+..
+Créer un compte
+Mot de passe oublié"
+
+usecase "Consulter le tableau de bord" as (UC3)
+usecase "Chatter" as (UC4)
+usecase UC5  as "<<crud>>
+Gérer le calendrier"
+usecase UC6 as "<<crud>>
+Gérer des tâches"
+
+:U:--(UC2)
+:U:--(UC1)
+:U:--(UC3)
+:U:--(UC4)
+:U:--(UC5)
+:U:--(UC6)
+
+(UC2) .> (UC1): <<extend>>
+(UC2_) .> (UC1): <<extend>>
+
+note "'L'utilisateur est connecté au site' est la pré-condition pour les cas d'utilisation :\n - Consulter le tableau de bord \n - Chatter \n - Gérer le calendrier \n - Gérer des tâches " as N
+}
+@enduml
